@@ -1,0 +1,24 @@
+# Dados (baixados no Colab/Databricks) — nunca versionar
+data/*
+!data/.gitkeep
+results/*
+!results/.gitkeep
+*.mat
+*.csv
+*.parquet
+*.pkl
+*.7z
+*.zip
+*.h5
+
+# Figuras SÃO versionadas
+!docs/figuras/
+!docs/figuras/*.png
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.DS_Store
