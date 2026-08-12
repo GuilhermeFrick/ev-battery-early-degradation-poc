@@ -1,5 +1,7 @@
 # Desafio #22 — Diagnóstico Preditivo de Bateria (VE): degradação antes do limiar
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/GuilhermeFrick/ev-battery-early-degradation-poc/blob/main/notebooks/PoC_Bateria_Colab.ipynb)
+
 PoC para o desafio *Diagnóstico Preditivo para Powertrain Elétrico*: **detectar
 degradação lenta / "quase-falha" antes de um evento de falha**, provado em **dataset
 público rotulado** e depois transferível ao VE do patrocinador.
