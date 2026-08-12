@@ -29,12 +29,13 @@ público rotulado** e depois transferível ao VE do patrocinador.
 
 ## Como rodar — **Colab-first** (disco local cheio; e requisito do projeto)
 O download e o processamento rodam no **Colab** (não no disco local). Abra
-`notebooks/PoC_Bateria_Colab.ipynb`. O repo versiona **só código** — dados nunca.
+`notebooks/PoC_Bateria_Colab.ipynb` pelo badge acima — ele **baixa o NASA automaticamente**
+(espelho S3, sem login/upload manual). O repo versiona **só código** — dados nunca.
 
 ```bash
-# local (se houver espaço/dados):
+# local (se houver espaço em disco):
 pip install -r requirements.txt
-python scripts/download_data.py --dataset severson --out data   # instruções/– download
+python scripts/download_data.py --dataset nasa --out data   # baixa e extrai B0005/6/7/18
 python src/run_poc.py --data-dir data
 ```
 
