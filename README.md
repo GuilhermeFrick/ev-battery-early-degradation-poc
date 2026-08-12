@@ -11,6 +11,52 @@ público rotulado** e depois transferível ao VE do patrocinador.
 > — **nunca** *"X dias antes do DTC"*. O DTC fica como rótulo a obter com o patrocinador.
 > Base desta decisão: levantamento de datasets (nossa análise + Manus, ago/2026).
 
+## O grande objetivo (em linguagem simples)
+
+Toda bateria envelhece e vai perdendo "saúde" (capacidade) até precisar de manutenção
+ou troca. Hoje, o alerta de falha (DTC) normalmente acende **quando o problema já
+chegou** — e um veículo parado em rota custa caro. O objetivo é **enxergar a saúde
+caindo e avisar com antecedência**, dando tempo de agir **antes da quebra**.
+
+> Analogia: em vez da luz do óleo acender só depois que o motor fundiu, é acompanhar a
+> saúde e avisar *"este veículo vai precisar de atenção em breve"*.
+
+**Onde se aplica:**
+- **Powertrain elétrico** (bateria, motor, inversor) — o alvo do desafio #22.
+- **Gestão de frota:** planejar manutenção e **evitar parada em rota**.
+- **Alertas OTA:** aviso remoto *"inspecione este veículo"* antes da falha.
+- **Extensível:** o mesmo método serve para o **eixo elétrico** e qualquer componente
+  cujo sinal se degrada com o tempo.
+
+## Resultados da PoC (dados reais de bateria — NASA)
+
+Rodamos em 4 baterias reais (B0005/6/7/18). O sistema **detectou a degradação e disparou
+o alerta antes** de cada uma cruzar o limiar de fim de vida (SoH 80%), **sem falso alarme**:
+
+| Bateria | Fim de vida (ciclo) | Alerta (ciclo) | **Antecedência (lead time)** |
+|---|---:|---:|---:|
+| B0005 | 100 | 62 | **38 ciclos** |
+| B0006 | 60 | 22 | **38 ciclos** |
+| B0007 | 123 | 61 | **62 ciclos** |
+| B0018 | 74 | 22 | **52 ciclos** |
+
+**Resumo:** 4/4 alertas antes da falha · **lead time médio ≈ 47 ciclos** (mínimo 38) ·
+**0 falsos alarmes**.
+
+![SoH caindo e alerta antes do limiar de fim de vida](docs/figuras/soh-alerta.png)
+
+*Cada curva é a saúde (SoH) da bateria caindo ao longo do uso. O triângulo laranja é o
+**alerta**; o ponto vermelho é quando ela **cruza o limite de fim de vida**. O alerta vem
+sempre antes.*
+
+![Antecedência do alerta por bateria](docs/figuras/lead-time.png)
+
+*Quantos ciclos de antecedência o alerta deu em cada bateria — a "folga" para agir.*
+
+> **Leitura honesta:** são 4 baterias — isto **prova o método** (detecção precoce
+> confiável), não é ainda um preditor de frota. Aqui o "evento" é o limiar de SoH; no
+> produto real, o **DTC do patrocinador** define o evento, e o lead time vira *"antes do DTC"*.
+
 ## Estratégia (bateria primeiro; motor como 2ª trilha)
 1. **Trilha principal — previsão precoce de fim de vida (Severson/MIT):** prever a vida
    útil (ciclos) a partir dos **primeiros ~100 ciclos**, *antes* de queda visível de
